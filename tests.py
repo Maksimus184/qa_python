@@ -80,3 +80,5 @@ class TestBooksCollector:
         collector.set_book_genre(name, genre)
         collector.add_book_in_favorites(name)
         assert name in collector.favorites
+
+
