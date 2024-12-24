@@ -7,20 +7,21 @@ class TestBooksCollector:
         collector.add_new_book('Гордость и предубеждение и зомби')
         collector.add_new_book('Что делать, если ваш кот хочет вас убить')
         assert len(collector.get_books_genre()) == 2
-    def test_set_book_genre(self):
+
+    def test_set_book_genre_new_add_new_genre(self):  
         collector = BooksCollector()
         collector.add_new_book('Гордость и предубеждение и зомби')
         collector.set_book_genre('Гордость и предубеждение и зомби', 'Фантастика')
         assert collector.get_book_genre('Гордость и предубеждение и зомби') == 'Фантастика'
 
-    def test_get_book_genre(self):
+    def test_get_book_genre_get_genre(self):
         collector = BooksCollector()
         collector.add_new_book('Гордость и предубеждение и зомби')
         collector.set_book_genre('Гордость и предубеждение и зомби', 'Фантастика')
         genre = collector.get_book_genre('Гордость и предубеждение и зомби')
         assert genre == 'Фантастика'
 
-    def test_get_books_with_specific_genre(self):
+    def test_get_books_with_specific_genre_get_books_with_new_genre(self):
         collector = BooksCollector()
         collector.add_new_book('Гордость и предубеждение и зомби')
         collector.add_new_book('Что делать, если ваш кот хочет вас убить')
@@ -29,7 +30,7 @@ class TestBooksCollector:
         assert sorted(collector.get_books_with_specific_genre('Комедии')) == sorted(
             ['Что делать, если ваш кот хочет вас убить', 'Гордость и предубеждение и зомби'])
 
-    def test_get_books_genre(self):
+    def test_get_books_genre_get_dictionary_with_my_books(self):
         collector = BooksCollector()
         collector.add_new_book('Гордость и предубеждение и зомби')
         collector.add_new_book('Что делать, если ваш кот хочет вас убить')
@@ -45,14 +46,14 @@ class TestBooksCollector:
         }
         assert book == result
 
-    def test_delete_book_from_favorites(self):
+    def test_delete_book_from_favorites_delete_my_favorites_books(self):
         collector = BooksCollector()
         collector.add_new_book('Лунтик')
         collector.add_book_in_favorites('Лунтик')
         collector.delete_book_from_favorites('Лунтик')
         assert 'Лунтик' not in collector.favorites
 
-    def test_get_list_of_favorites_books(self):
+    def test_get_list_of_favorites_books_get_new_list_with_my_books(self):
         collector = BooksCollector()
         collector.add_new_book('Лунтик')
         collector.add_new_book('Маша и Медведь')
@@ -63,7 +64,7 @@ class TestBooksCollector:
                           'Маша и Медведь'}
         assert expected_books == set(favorite_books), "Список избранных книг не соответствует ожидаемому."
 
-    def test_get_books_for_children(self):
+    def test_get_books_for_children_get_list_with_books_for_children(self):
         collector = BooksCollector()
         collector.add_new_book('Лунтик')
         collector.set_book_genre('Лунтик', 'Мультфильмы')
@@ -71,7 +72,7 @@ class TestBooksCollector:
         expected_books = ['Лунтик']
         assert sorted(expected_books) == sorted(children_books), "Список книг для детей не соответствует ожидаемому."
 
-    def test_add_book_in_favorites(self):
+    def test_add_book_in_favorites_add_my_favorites_book(self):
         collector = BooksCollector()
         name = 'Лунтик'
         genre = 'Мультфильмы'
@@ -79,5 +80,4 @@ class TestBooksCollector:
         collector.set_book_genre(name, genre)
         collector.add_book_in_favorites(name)
         assert name in collector.favorites
-
 
